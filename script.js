@@ -1,6 +1,7 @@
 console.log("hello");
 let boxes=document.querySelectorAll(".box");
 let reset =document.querySelector(".reset");
+let winner=document.querySelector(".winner");
 let turn=true;
 
 let winning_patterns=[
@@ -26,6 +27,37 @@ box.addEventListener("click", ()=> {
    }
    box.disabled =true;
    checkWinner();
+});
+});
+
+const checkWinner= ()=>{
+  for(let pattern of winning_patterns){
+    let x= boxes[pattern[0]].innerText;
+    let y= boxes[pattern[1]].innerText;
+    let z= boxes[pattern[2]].innerText;
+    
+    if(x!=="" && y!=="" && z!==""){
+        if(x=== y && y===z){
+            if(x==="o"){
+               
+                winner.innerText="o is the winner";
+            }
+            else{
+               winner.innerText="x is the winner";
+        }
+
+      }
+      }
+  } 
+}
+
+reset.addEventListener("click",()=>{
+  boxes.forEach((box)=>{
+    box.innerText="";
+    box.disabled=false;
+    winner.innerText="";
+    turn=true;
+  })
 })
-})
+
 
